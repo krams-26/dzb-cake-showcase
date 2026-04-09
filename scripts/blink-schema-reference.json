@@ -1,0 +1,50 @@
+{
+  "$comment": "Référence pour créer les tables dans le dashboard Blink. Les noms de tables doivent être cakes, categories, orders (voir src/blink/db.ts).",
+  "tables": {
+    "categories": {
+      "columns": {
+        "id": "string (PK, ex. cat_wedding, cat_birthday — aligner avec src/lib/category-media.ts)",
+        "nameFr": "string",
+        "nameEn": "string",
+        "nameKr": "string"
+      }
+    },
+    "cakes": {
+      "columns": {
+        "id": "string (PK, UUID ou slug)",
+        "categoryId": "string (FK → categories.id)",
+        "nameFr": "string",
+        "nameEn": "string",
+        "nameKr": "string",
+        "descriptionFr": "string",
+        "descriptionEn": "string",
+        "descriptionKr": "string",
+        "price": "number",
+        "imageUrl": "string (URL absolue)"
+      }
+    },
+    "orders": {
+      "columns": {
+        "id": "string (PK)",
+        "customerName": "string",
+        "customerPhone": "string",
+        "total": "number",
+        "status": "string (pending | preparing | ready | delivered | cancelled)",
+        "createdAt": "string (ISO 8601)",
+        "deliveryDate": "string (ISO date, optionnel)",
+        "items": "string (JSON array: cakeId, name, quantity, unitPrice, note?)"
+      }
+    },
+    "inventory_items": {
+      "$comment": "Optionnel — pour l’onglet inventaire réel plus tard",
+      "columns": {
+        "id": "string",
+        "nameFr": "string",
+        "nameEn": "string",
+        "nameKr": "string",
+        "quantityLabel": "string",
+        "status": "string (ok | low)"
+      }
+    }
+  }
+}

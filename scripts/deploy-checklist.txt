@@ -1,0 +1,29 @@
+Checklist après déploiement (staging / production)
+====================================================
+
+1. MySQL : `npm run db:setup` (migrations + seed) avec DATABASE_* dans .env / .env.local,
+   ou importer dans phpMyAdmin scripts/mysql/dzb_cake_schema.sql puis dzb_cake_seed.sql.
+
+2. API Node : héberger `npm run server` (ou équivalent) avec DATABASE_* pointant vers MySQL.
+   Le build Vite statique appelle /api : configurer le proxy (Nginx, etc.) vers cette API.
+
+3. Variables d’environnement sur la plateforme front (Netlify / Vercel / autre) :
+   - VITE_API_BASE_URL si l’API n’est pas sur le même domaine que le front
+   Sur le serveur API : DATABASE_*, SESSION_SECRET, NODE_ENV=production, FRONTEND_ORIGIN (URL du site).
+   Compte staff : npm run db:create-staff (STAFF_EMAIL / STAFF_PASSWORD) après db:migrate.
+
+4. Build : npm run build sans erreur ; vérifier les logs CI.
+
+5. SPA : ouvrir une URL profonde (ex. /cakes, /dashboard après login) et recharger la page → doit afficher l’app, pas une 404 serveur.
+
+6. Parcours manuels :
+   - Accueil et catalogue
+   - Fiche gâteau (/cakes/<id>)
+   - Commander → page /order/confirmed
+   - /login (personnel) → tableau de bord
+   - Onglet inventaire (table inventory_items ou aperçu local)
+
+7. Tables MySQL : categories, cakes, orders, inventory_items, staff_users, schema_migrations (voir database/migrations/).
+
+8. Tests E2E locaux : npm run test:e2e (lance API + Vite via dev:full ; MySQL doit être démarré avec schéma appliqué ; en cas de mémoire faible,
+   lancer le terminal avec NODE_OPTIONS=--max-old-space-size=8192).

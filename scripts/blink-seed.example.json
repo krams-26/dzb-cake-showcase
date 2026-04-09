@@ -1,0 +1,68 @@
+{
+  "categories": [
+    {
+      "id": "cat_wedding",
+      "nameFr": "Mariage",
+      "nameEn": "Wedding",
+      "nameKr": "Ubukwe"
+    },
+    {
+      "id": "cat_birthday",
+      "nameFr": "Anniversaire",
+      "nameEn": "Birthday",
+      "nameKr": "Isabukuru"
+    },
+    {
+      "id": "cat_pastry",
+      "nameFr": "Pâtisserie",
+      "nameEn": "Pastry",
+      "nameKr": "Ibikozwe"
+    },
+    {
+      "id": "cat_custom",
+      "nameFr": "Personnalisé",
+      "nameEn": "Custom",
+      "nameKr": "Vyihariye"
+    }
+  ],
+  "cakes": [
+    {
+      "categoryId": "cat_wedding",
+      "nameFr": "Gâteau trois étages vanille",
+      "nameEn": "Three-tier vanilla cake",
+      "nameKr": "Igikombe c'inyanya eshatu",
+      "descriptionFr": "Vanille, crème légère, décoration florale.",
+      "descriptionEn": "Vanilla, light cream, floral decoration.",
+      "descriptionKr": "Vanille, cream, ubwiza bw'indabyo.",
+      "price": 850000,
+      "imageUrl": "https://images.unsplash.com/photo-1535254973040-607b474cb80d?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      "categoryId": "cat_birthday",
+      "nameFr": "Layer cake chocolat",
+      "nameEn": "Chocolate layer cake",
+      "nameKr": "Igikombe c'shokola",
+      "descriptionFr": "Génoise chocolat, ganache, éclats de noisettes.",
+      "descriptionEn": "Chocolate sponge, ganache, hazelnut pieces.",
+      "descriptionKr": "Shokola, ganache.",
+      "price": 120000,
+      "imageUrl": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=800"
+    }
+  ],
+  "inventory_items": [
+    {
+      "nameFr": "Farine",
+      "nameEn": "Flour",
+      "nameKr": "Ifu",
+      "quantityLabel": "12 kg",
+      "status": "ok"
+    },
+    {
+      "nameFr": "Sucre",
+      "nameEn": "Sugar",
+      "nameKr": "Isukari",
+      "quantityLabel": "5 kg",
+      "status": "low"
+    }
+  ]
+}
