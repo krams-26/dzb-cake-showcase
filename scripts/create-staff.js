@@ -1,6 +1,6 @@
 /**
  * Crée ou met à jour un compte staff (mot de passe) à partir de l’environnement.
- * Usage : STAFF_EMAIL=a@b.com STAFF_PASSWORD=secret npm run db:create-staff
+ * Usage : STAFF_EMAIL=a@b.com STAFF_PASSWORD=secret [STAFF_ROLE=staff|admin] npm run db:create-staff
  */
 import '../server/load-env.js'
 import { randomUUID } from 'node:crypto'
@@ -27,6 +27,9 @@ async function main() {
     process.exit(1)
   }
 
+  const roleRaw = String(process.env.STAFF_ROLE || 'staff').trim().toLowerCase()
+  const role = roleRaw === 'admin' ? 'admin' : 'staff'
+
   const hash = await bcrypt.hash(password, 10)
   const id = randomUUID()
   const dbName = getDbName()
@@ -40,12 +43,12 @@ async function main() {
   })
 
   await conn.query(
-    `INSERT INTO staff_users (id, email, password_hash) VALUES (?, ?, ?)
-     ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash)`,
-    [id, email, hash],
+    `INSERT INTO staff_users (id, email, password_hash, role) VALUES (?, ?, ?, ?)
+     ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash), role = VALUES(role)`,
+    [id, email, hash, role],
   )
   await conn.end()
-  console.log('Compte staff OK :', email)
+  console.log('Compte staff OK :', email, '(' + role + ')')
 }
 
 main().catch((e) => {

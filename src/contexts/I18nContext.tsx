@@ -16,6 +16,8 @@ export const translations: Translations = {
   'nav.login': { fr: 'Connexion', en: 'Login', kr: 'Injira' },
   'nav.staffLogin': { fr: 'Espace équipe', en: 'Staff login', kr: 'Abakozi' },
   'nav.logout': { fr: 'Déconnexion', en: 'Logout', kr: 'Sohoka' },
+  'staff.roleAdmin': { fr: 'Administrateur', en: 'Administrator', kr: 'Umuyobozi' },
+  'staff.roleStaff': { fr: 'Équipe', en: 'Staff', kr: 'Umukozi' },
   'login.title': { fr: 'Connexion personnel', en: 'Staff sign in', kr: 'Kwinjira abakozi' },
   'login.email': { fr: 'E-mail', en: 'Email', kr: 'Imeri' },
   'login.password': { fr: 'Mot de passe', en: 'Password', kr: 'Ijambo ry\'ibanga' },
@@ -164,7 +166,11 @@ export const translations: Translations = {
   'footer.phone': { fr: '+257 69 00 00 00', en: '+257 69 00 00 00', kr: '+257 69 00 00 00' },
   'footer.email': { fr: 'contact@dzbcake.bi', en: 'contact@dzbcake.bi', kr: 'contact@dzbcake.bi' },
   'footer.addressLine1': { fr: 'Bujumbura, Burundi', en: 'Bujumbura, Burundi', kr: 'Bujumbura, Burundi' },
-  'footer.addressLine2': { fr: 'Quartier Rohero II', en: 'Rohero II district', kr: 'Quartier Rohero II' },
+  'footer.addressLine2': {
+    fr: 'Kamenge, 15e Avenue',
+    en: 'Kamenge, 15th Avenue',
+    kr: 'Kamenge, 15e Avenue',
+  },
   'footer.newsletter': { fr: 'Newsletter', en: 'Newsletter', kr: 'Amakuru' },
   'footer.newsletterDesc': {
     fr: 'Restez informé de nos nouvelles créations et offres spéciales.',

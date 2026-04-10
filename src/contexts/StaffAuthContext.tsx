@@ -1,15 +1,19 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { apiUrl } from '../data/api-database'
 
+export type StaffRole = 'admin' | 'staff'
+
 export interface StaffUser {
   id: string
   email: string
+  role: StaffRole
 }
 
 interface StaffAuthState {
   authReady: boolean
   staff: StaffUser | null
   isStaff: boolean
+  isAdmin: boolean
   login: (email: string, password: string) => Promise<void>
   logout: () => Promise<void>
 }
@@ -30,8 +34,13 @@ export function StaffAuthProvider({ children }: { children: React.ReactNode }) {
       setStaff(null)
       return
     }
-    const data = (await res.json()) as { user: StaffUser }
-    setStaff(data.user)
+    const data = (await res.json()) as { user: StaffUser & { role?: string } }
+    const u = data.user
+    setStaff({
+      id: u.id,
+      email: u.email,
+      role: u.role === 'admin' ? 'admin' : 'staff',
+    })
   }, [])
 
   useEffect(() => {
@@ -82,6 +91,7 @@ export function StaffAuthProvider({ children }: { children: React.ReactNode }) {
       authReady,
       staff,
       isStaff: !!staff,
+      isAdmin: staff?.role === 'admin',
       login,
       logout,
     }),

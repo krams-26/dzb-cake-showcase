@@ -11,11 +11,19 @@ const linkClass =
 
 export function DashboardSidebar() {
   const { t } = useI18n()
-  const { logout } = useStaffAuth()
+  const { logout, staff, isAdmin } = useStaffAuth()
   const navigate = useNavigate()
 
   return (
     <nav className="flex flex-col gap-1 p-4">
+      {staff ? (
+        <div className="mb-2 rounded-lg border border-border bg-muted/40 px-3 py-2 text-xs">
+          <p className="truncate font-medium text-foreground">{staff.email}</p>
+          <p className="text-muted-foreground">
+            {isAdmin ? t('staff.roleAdmin') : t('staff.roleStaff')}
+          </p>
+        </div>
+      ) : null}
       <Link to="/dashboard" className={cn(linkClass)}>
         <LayoutDashboard className="h-4 w-4 shrink-0" />
         {t('dashboard.tab.overview')}
