@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
-import { FALLBACK_CAKE_IMAGE, PLACEHOLDER_CAKE_IMAGE } from '../../lib/placeholder-images'
+import {
+  FALLBACK_CAKE_IMAGE,
+  PLACEHOLDER_CAKE_IMAGE,
+  TERTIARY_CAKE_IMAGE,
+} from '../../lib/placeholder-images'
+import { normalizeRemoteImageUrl } from '../../lib/normalize-remote-image-url'
 
 type SafeImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
   fallbackSrc?: string
@@ -17,10 +22,16 @@ function uniqueUrls(...urls: (string | undefined)[]): string[] {
   return out
 }
 
-export function SafeImage({ src, fallbackSrc, onError, alt, ...rest }: SafeImageProps) {
+export function SafeImage({ src, fallbackSrc, onError, alt, referrerPolicy, ...rest }: SafeImageProps) {
   const [step, setStep] = useState(0)
-  const primary = src?.trim() || PLACEHOLDER_CAKE_IMAGE
-  const chain = uniqueUrls(primary, fallbackSrc, PLACEHOLDER_CAKE_IMAGE, FALLBACK_CAKE_IMAGE)
+  const primary = normalizeRemoteImageUrl(src)
+  const chain = uniqueUrls(
+    primary,
+    fallbackSrc ? normalizeRemoteImageUrl(fallbackSrc) : undefined,
+    PLACEHOLDER_CAKE_IMAGE,
+    FALLBACK_CAKE_IMAGE,
+    TERTIARY_CAKE_IMAGE,
+  )
 
   const current = chain[Math.min(step, chain.length - 1)] ?? PLACEHOLDER_CAKE_IMAGE
 
@@ -29,6 +40,7 @@ export function SafeImage({ src, fallbackSrc, onError, alt, ...rest }: SafeImage
       {...rest}
       src={current}
       alt={alt ?? ''}
+      referrerPolicy={referrerPolicy ?? 'no-referrer'}
       loading={rest.loading ?? 'lazy'}
       decoding={rest.decoding ?? 'async'}
       onError={(e) => {

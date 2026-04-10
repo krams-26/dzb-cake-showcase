@@ -1,11 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lora:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+/* DzB Cake — typos (Cormorant + Outfit). UI/UX Pro Max–inspired soft UI. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap');
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   Blink UI Theme CSS
-   REQUIRED for @blinkdotnew/ui components to render correctly.
-   BlinkUIProvider adds .theme-{name} + .dark/.light to <html>,
-   activating the matching CSS variable set below.
-   ───────────────────────────────────────────────────────────────────────────── */
+/* Blink UI : variables de composants (thème linear chargé sur <html>) */
 @import url('@blinkdotnew/ui/styles');
 
 @tailwind base;
@@ -22,157 +18,148 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
 
-    font-family: var(--font-sans), Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
     letter-spacing: var(--tracking-normal);
     overflow-x: hidden;
   }
+
+  :where(a, button, input, textarea, select, summary):focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
 }
 
-/* ── App palette (unlayered, after utilities) ─────────────────────────────────
-   Overrides @blinkdotnew/ui theme colors. @layer base loses specificity to UI themes.
-   Dark mode uses :root.dark + .theme-*.dark to match BlinkUIProvider.
-   ⚠️ AGENT MUST REPLACE placeholder values with a custom palette.
-   ──────────────────────────────────────────────────────────────────────────── */
-:root {
-  /* ⚠️ AGENT MUST REPLACE: These are placeholder colors. You MUST define a custom palette before writing components. */
-
-  /* The template uses distinctive placeholder colors to force customization - do NOT use these in production! */
-
-  /*
-   * EXAMPLE PALETTES (use as inspiration, replace with your own):
-   *
-   * Modern SaaS (Business/Enterprise):
-   * --primary: 220 10% 20%;        (Charcoal #2D3748)
-   * --accent: 220 10% 30%;         (Lighter charcoal #4A5568)
-   *
-   * Bold Tech (Startups/Developer Tools):
-   * --primary: 348 83% 47%;        (Crimson #DA1E37)
-   * --accent: 348 83% 57%;         (Lighter crimson #F0213E)
-   *
-   * Quantum Rose (Creative/Design):
-   * --primary: 330 81% 50%;        (Pink #E6067A)
-   * --accent: 330 81% 70%;         (Lighter pink #F472B6)
-   *
-   * Rich Forest (Calm/Professional):
-   * --primary: 151 55% 25%;        (Pine #1C6340)
-   * --accent: 151 55% 35%;         (Lighter pine #288C5A)
-   *
-   * Sunset Warmth (Friendly/Welcoming):
-   * --primary: 24 95% 53%;         (Orange #F97316)
-   * --accent: 24 95% 63%;          (Lighter orange #FB923C)
-   */
-
-  /* Colors - REPLACE ALL VALUES BELOW with your custom palette */
-  --background: 37 94% 98%;
-  --foreground: 20 20% 15%;
-  --card: 0 0% 100%;
-  --card-foreground: 20 20% 15%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 20 20% 15%;
-
-  /* ⚠️ PLACEHOLDER: Replace with your custom primary color (NOT generic teal, NOT blue) */
-  --primary: 17 71% 61%;
+/*
+ * Tokens DzB — IMPORTANT : :root.theme-linear bat la feuille Blink (.theme-linear seul)
+ * en cascade, sinon le design « revient » à Linear/Inter après build ou hot reload.
+ */
+:root.theme-linear {
+  --background: 38 42% 97%;
+  --foreground: 24 30% 16%;
+  --card: 40 55% 99%;
+  --card-foreground: 24 30% 16%;
+  --popover: 40 55% 99%;
+  --popover-foreground: 24 30% 16%;
+  --primary: 350 42% 44%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 37 94% 90%;
-  --secondary-foreground: 17 71% 30%;
-  --muted: 37 20% 90%;
-  --muted-foreground: 20 10% 40%;
-
-  /* ⚠️ PLACEHOLDER: Replace with your custom accent color */
-  --accent: 38 92% 50%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 84.2365% 60.1961%;
+  --secondary: 35 32% 93%;
+  --secondary-foreground: 24 28% 22%;
+  --muted: 35 22% 92%;
+  --muted-foreground: 24 12% 42%;
+  --accent: 32 88% 48%;
+  --accent-foreground: 24 40% 12%;
+  --destructive: 0 72% 48%;
   --destructive-foreground: 0 0% 100%;
-  --border: 20 10% 90%;
-  --input: 20 10% 90%;
+  --border: 32 18% 88%;
+  --input: 32 18% 88%;
+  --ring: 350 42% 44%;
 
-  /* ⚠️ PLACEHOLDER: Replace with your custom ring color (usually matches primary) */
-  --ring: 17 71% 61%;
+  --chart-1: 350 45% 48%;
+  --chart-2: 32 88% 48%;
+  --chart-3: 152 28% 42%;
+  --chart-4: 28 55% 52%;
+  --chart-5: 24 35% 38%;
 
-  /* Charts - ⚠️ PLACEHOLDER: Replace with your custom chart colors */
-  --chart-1: 348 83% 47%;
-  --chart-2: 24 95% 53%;
-  --chart-3: 47 96% 53%;
-  --chart-4: 151 55% 35%;
-  --chart-5: 262 52% 47%;
-
-  /* Sidebar - ⚠️ PLACEHOLDER: Replace with your custom sidebar colors */
-  --sidebar: 204 93.75% 93.7255%;
-  --sidebar-foreground: 216.9231 19.1176% 26.6667%;
-  --sidebar-primary: 330 81% 50%;
+  --sidebar: 38 35% 95%;
+  --sidebar-foreground: 24 25% 22%;
+  --sidebar-primary: 350 42% 44%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 330 81% 65%;
-  --sidebar-accent-foreground: 216.9231 19.1176% 26.6667%;
-  --sidebar-border: 220 13.0435% 90.9804%;
-  --sidebar-ring: 330 81% 50%;
+  --sidebar-accent: 35 30% 90%;
+  --sidebar-accent-foreground: 24 25% 22%;
+  --sidebar-border: 32 18% 88%;
+  --sidebar-ring: 350 42% 44%;
 
-  /* Fonts */
-  --font-sans: dm sans, sans-serif;
-  --font-serif: lora, serif;
-  --font-mono: ibm plex mono, monospace;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-heading: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: ui-monospace, 'Cascadia Code', monospace;
 
-  /* Shadows */
-  --shadow-2xs: 0px 4px 8px -1px hsl(0deg 0% 0% / 5%);
-  --shadow-xs: 0px 4px 8px -1px hsl(0deg 0% 0% / 5%);
-  --shadow-sm: 0px 4px 8px -1px hsl(0deg 0% 0% / 10%), 0px 1px 2px -2px hsl(0deg 0% 0% / 10%);
-  --shadow: 0px 4px 8px -1px hsl(0deg 0% 0% / 10%), 0px 1px 2px -2px hsl(0deg 0% 0% / 10%);
-  --shadow-md: 0px 4px 8px -1px hsl(0deg 0% 0% / 10%), 0px 2px 4px -2px hsl(0deg 0% 0% / 10%);
-  --shadow-lg: 0px 4px 8px -1px hsl(0deg 0% 0% / 10%), 0px 4px 6px -2px hsl(0deg 0% 0% / 10%);
-  --shadow-xl: 0px 4px 8px -1px hsl(0deg 0% 0% / 10%), 0px 8px 10px -2px hsl(0deg 0% 0% / 10%);
-  --shadow-2xl: 0px 4px 8px -1px hsl(0deg 0% 0% / 25%);
+  --font-size-xs: 0.6875rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.375rem;
+  --font-size-2xl: 1.75rem;
+  --font-weight-heading: 600;
+  --line-height-heading: 1.2;
+  --letter-spacing-heading: -0.02em;
 
-  /* Misc */
-  --tracking-normal: 0em;
+  --radius: 0.75rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  --shadow-2xs: 0 1px 2px hsl(24 30% 10% / 4%);
+  --shadow-xs: 0 2px 6px hsl(24 28% 12% / 5%);
+  --shadow-sm: 0 2px 8px -2px hsl(24 28% 12% / 7%), 0 1px 2px -1px hsl(24 28% 12% / 5%);
+  --shadow: 0 4px 14px -4px hsl(24 25% 12% / 9%), 0 2px 6px -2px hsl(24 25% 12% / 6%);
+  --shadow-md: 0 8px 24px -8px hsl(24 25% 12% / 11%), 0 4px 10px -4px hsl(24 25% 12% / 7%);
+  --shadow-lg: 0 12px 32px -10px hsl(24 22% 12% / 14%), 0 6px 14px -6px hsl(24 22% 12% / 8%);
+  --shadow-xl: 0 20px 50px -16px hsl(24 20% 10% / 16%);
+  --shadow-2xl: 0 24px 60px -20px hsl(24 20% 8% / 22%);
+  --shadow-card: 0 4px 24px -8px hsl(24 25% 15% / 9%), 0 2px 8px -4px hsl(24 25% 15% / 6%),
+    0 0 0 1px hsl(var(--border) / 0.5);
+
+  --duration-fast: 150ms;
+  --duration-normal: 220ms;
+  --duration-slow: 300ms;
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --tracking-normal: 0.01em;
   --spacing: 0.25rem;
-  --radius: 0.5rem;
 }
 
-:root.dark,
-.theme-linear.dark,
-.theme-glass.dark,
-.theme-midnight.dark,
-.theme-minimal.dark {
-  /* ⚠️ AGENT MUST REPLACE: Dark mode colors - replace with your custom dark palette */
-  --background: 20 20% 10%;
-  --foreground: 0 0% 95%;
-  --card: 20 20% 12%;
-  --card-foreground: 0 0% 95%;
-  --popover: 20 20% 12%;
-  --popover-foreground: 0 0% 95%;
+:root.dark.theme-linear,
+:root.theme-linear.dark {
+  --background: 24 22% 9%;
+  --foreground: 38 25% 94%;
+  --card: 24 20% 12%;
+  --card-foreground: 38 25% 94%;
+  --popover: 24 20% 12%;
+  --popover-foreground: 38 25% 94%;
+  --primary: 350 38% 58%;
+  --primary-foreground: 24 30% 10%;
+  --secondary: 24 16% 18%;
+  --secondary-foreground: 38 20% 90%;
+  --muted: 24 14% 20%;
+  --muted-foreground: 35 12% 65%;
+  --accent: 32 80% 52%;
+  --accent-foreground: 24 35% 10%;
+  --destructive: 0 55% 42%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 24 14% 22%;
+  --input: 24 14% 22%;
+  --ring: 350 38% 58%;
 
-  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode primary color */
-  --primary: 17 71% 61%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 20 20% 20%;
-  --secondary-foreground: 0 0% 95%;
-  --muted: 20 20% 20%;
-  --muted-foreground: 0 0% 60%;
-  --accent: 38 92% 50%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 0 0% 95%;
-  --border: 20 20% 20%;
-  --input: 20 20% 20%;
-  --ring: 17 71% 61%;
+  --chart-1: 350 42% 60%;
+  --chart-2: 32 75% 55%;
+  --chart-3: 152 25% 48%;
+  --chart-4: 28 50% 55%;
+  --chart-5: 24 30% 50%;
 
-  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode chart colors */
-  --chart-1: 348 83% 65%;
-  --chart-2: 24 95% 63%;
-  --chart-3: 47 96% 65%;
-  --chart-4: 151 55% 55%;
-  --chart-5: 262 52% 65%;
+  --sidebar: 24 22% 11%;
+  --sidebar-foreground: 38 22% 90%;
+  --sidebar-primary: 350 38% 58%;
+  --sidebar-primary-foreground: 24 30% 10%;
+  --sidebar-accent: 24 16% 18%;
+  --sidebar-accent-foreground: 38 20% 88%;
+  --sidebar-border: 24 14% 22%;
+  --sidebar-ring: 350 38% 58%;
 
-  /* ⚠️ PLACEHOLDER: Replace with your custom dark mode sidebar colors */
-  --sidebar: 217.2414 32.5843% 17.451%;
-  --sidebar-foreground: 216 12.1951% 83.9216%;
-  --sidebar-primary: 330 81% 75%;
-  --sidebar-primary-foreground: 222.2222 47.3684% 11.1765%;
-  --sidebar-accent: 216.9231 19.1176% 26.6667%;
-  --sidebar-accent-foreground: 240 5.0279% 64.902%;
-  --sidebar-border: 215 13.7931% 34.1176%;
-  --sidebar-ring: 330 81% 75%;
+  --shadow-card: 0 4px 28px -8px hsl(0 0% 0% / 35%), 0 0 0 1px hsl(var(--border) / 0.4);
+}
+
+/* Autres thèmes Blink : même identité (évite retour visuel si theme change) */
+:root.theme-glass,
+:root.theme-minimal,
+:root.theme-midnight {
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
 }
 
 .animate-fade-in {
@@ -188,5 +175,11 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none;
   }
 }

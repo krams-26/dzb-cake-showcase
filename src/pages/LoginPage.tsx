@@ -30,14 +30,17 @@ export function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
-      <Link to="/" className="mb-8 flex items-center gap-2 text-primary">
-        <Cake className="h-10 w-10" />
-        <span className="text-2xl font-bold tracking-tight">DzB Cake</span>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-secondary/30 via-background to-background px-4">
+      <Link
+        to="/"
+        className="mb-8 flex cursor-pointer items-center gap-2 rounded-md text-primary transition-opacity duration-normal hover:opacity-90"
+      >
+        <Cake className="h-10 w-10" aria-hidden />
+        <span className="font-heading text-3xl font-semibold tracking-tight">DzB Cake</span>
       </Link>
-      <Card className="w-full max-w-md border-border shadow-lg">
+      <Card className="w-full max-w-md border-0 shadow-card ring-1 ring-black/[0.06]">
         <CardHeader>
-          <CardTitle>{t('login.title')}</CardTitle>
+          <CardTitle className="font-heading text-2xl font-semibold">{t('login.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={onSubmit} className="flex flex-col gap-4">

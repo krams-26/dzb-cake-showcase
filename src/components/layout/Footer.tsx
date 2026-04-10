@@ -23,26 +23,44 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t bg-background/50 backdrop-blur-sm">
+    <footer className="border-t border-border/60 bg-secondary/25 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-10 sm:py-12">
         <div className="grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <Cake className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold tracking-tight text-primary">DzB Cake</span>
+            <Link
+              to="/"
+              className="flex cursor-pointer items-center gap-2 rounded-md transition-opacity duration-normal hover:opacity-90"
+            >
+              <Cake className="h-8 w-8 text-primary" aria-hidden />
+              <span className="font-heading text-2xl font-semibold tracking-tight text-primary">DzB Cake</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               {t('hero.subtitle')}
             </p>
-            <div className="flex gap-4">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">
-                <Instagram className="h-5 w-5" />
+            <div className="flex gap-2">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex cursor-pointer rounded-md p-2 text-muted-foreground transition-colors duration-normal hover:bg-background/80 hover:text-primary"
+              >
+                <Instagram className="h-5 w-5" aria-hidden />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">
-                <Facebook className="h-5 w-5" />
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex cursor-pointer rounded-md p-2 text-muted-foreground transition-colors duration-normal hover:bg-background/80 hover:text-primary"
+              >
+                <Facebook className="h-5 w-5" aria-hidden />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary">
-                <Twitter className="h-5 w-5" />
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex cursor-pointer rounded-md p-2 text-muted-foreground transition-colors duration-normal hover:bg-background/80 hover:text-primary"
+              >
+                <Twitter className="h-5 w-5" aria-hidden />
               </a>
             </div>
           </div>

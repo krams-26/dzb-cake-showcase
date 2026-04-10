@@ -49,8 +49,10 @@ export function CakesPage() {
     <div className="container mx-auto max-w-7xl overflow-x-hidden px-4 py-8 sm:py-12">
       <div className="mb-8 flex flex-col items-center gap-6 text-center sm:mb-12 md:flex-row md:justify-between md:text-left">
         <div>
-          <h1 className="mb-2 text-3xl font-bold sm:text-4xl">{t('nav.cakes')}</h1>
-          <p className="text-muted-foreground">{t('cakes.subtitle')}</p>
+          <h1 className="font-heading mb-2 text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">
+            {t('nav.cakes')}
+          </h1>
+          <p className="max-w-xl text-muted-foreground">{t('cakes.subtitle')}</p>
         </div>
         <div className="relative w-full max-w-sm">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -59,7 +61,7 @@ export function CakesPage() {
             placeholder={t('cakes.searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-10 w-full rounded-full border border-input bg-background pl-10 pr-4 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="h-10 w-full rounded-full border border-input bg-card pl-10 pr-4 text-sm shadow-sm ring-offset-background transition-shadow duration-normal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
         </div>
       </div>
@@ -118,36 +120,36 @@ export function CakesPage() {
           {filteredCakes?.map((cake) => (
             <Card
               key={cake.id}
-              className="group overflow-hidden border-none shadow-elegant transition-all duration-300 hover:scale-[1.02]"
+              className="group overflow-hidden border-0 bg-card shadow-card ring-1 ring-black/[0.04] transition-shadow duration-normal hover:shadow-lg motion-reduce:transform-none"
             >
               <div className="relative aspect-square overflow-hidden">
                 <SafeImage
                   src={cake.imageUrl || PLACEHOLDER_CAKE_IMAGE}
                   fallbackSrc={PLACEHOLDER_CAKE_IMAGE}
                   alt={nameForLang(cake, language)}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-slow ease-smooth motion-reduce:transition-none group-hover:scale-[1.04]"
                 />
                 <div className="absolute right-4 top-4">
-                  <Badge className="bg-white/80 text-primary backdrop-blur-md">
+                  <Badge className="border-0 bg-card/90 font-medium text-primary shadow-sm backdrop-blur-md">
                     {cake.price.toLocaleString()} BIF
                   </Badge>
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="mb-2 text-xl font-bold">{nameForLang(cake, language)}</h3>
-                <p className="line-clamp-2 text-sm text-muted-foreground">
+                <h3 className="font-heading mb-2 text-xl font-semibold">{nameForLang(cake, language)}</h3>
+                <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                   {descForLang(cake, language)}
                 </p>
                 <Link
                   to="/cakes/$cakeId"
                   params={{ cakeId: cake.id }}
-                  className="mt-3 inline-block text-sm font-medium text-primary hover:underline"
+                  className="mt-3 inline-block cursor-pointer text-sm font-medium text-primary underline-offset-4 transition-colors duration-normal hover:text-primary/80 hover:underline"
                 >
                   {t('cake.viewDetail')}
                 </Link>
               </CardContent>
               <CardFooter className="flex gap-2 p-6 pt-0">
-                <Button className="w-full gap-2" onClick={() => setOrderCake(cake)}>
+                <Button className="w-full cursor-pointer gap-2 transition-opacity duration-normal hover:opacity-95" onClick={() => setOrderCake(cake)}>
                   <ShoppingCart className="h-4 w-4" />
                   {t('cakes.order')}
                 </Button>

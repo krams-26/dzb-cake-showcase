@@ -58,7 +58,7 @@ export function CakeDetailPage() {
       </Button>
 
       <div className="grid gap-8 sm:gap-10 md:grid-cols-2 md:items-start">
-        <div className="relative overflow-hidden rounded-2xl shadow-elegant">
+        <div className="relative overflow-hidden rounded-2xl shadow-card ring-1 ring-black/[0.04]">
           <SafeImage
             src={cake.imageUrl || PLACEHOLDER_CAKE_IMAGE}
             fallbackSrc={PLACEHOLDER_CAKE_IMAGE}
@@ -67,10 +67,18 @@ export function CakeDetailPage() {
           />
         </div>
         <div className="min-w-0">
-          <Badge className="mb-4">{cake.price.toLocaleString()} BIF</Badge>
-          <h1 className="mb-4 text-2xl font-bold sm:text-3xl">{nameForLang(cake, language)}</h1>
-          <p className="mb-8 text-lg text-muted-foreground">{descForLang(cake, language)}</p>
-          <Button size="lg" className="gap-2" onClick={() => setOrderCake(cake)}>
+          <Badge className="mb-4 border-0 bg-secondary font-medium text-secondary-foreground">
+            {cake.price.toLocaleString()} BIF
+          </Badge>
+          <h1 className="font-heading mb-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+            {nameForLang(cake, language)}
+          </h1>
+          <p className="mb-8 text-lg leading-relaxed text-muted-foreground">{descForLang(cake, language)}</p>
+          <Button
+            size="lg"
+            className="cursor-pointer gap-2 shadow-md transition-shadow duration-normal hover:shadow-lg"
+            onClick={() => setOrderCake(cake)}
+          >
             <ShoppingCart className="h-5 w-5" />
             {t('cakes.order')}
           </Button>

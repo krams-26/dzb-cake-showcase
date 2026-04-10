@@ -27,7 +27,8 @@ module.exports = {
         lg:      'var(--shadow-lg)',
         xl:      'var(--shadow-xl)',
         card:    'var(--shadow-card)',
-        elegant: '0 25px 50px -12px hsl(20 20% 15% / 0.12)',
+        elegant: '0 20px 48px -14px hsl(24 28% 12% / 0.14), 0 8px 20px -10px hsl(24 28% 12% / 0.08)',
+        soft: '0 4px 24px -8px hsl(24 25% 15% / 9%), 0 2px 8px -4px hsl(24 25% 15% / 6%)',
       },
 
       // ── Font families — resolve to per-theme CSS vars ─────────────────────
@@ -35,7 +36,7 @@ module.exports = {
         sans:    'var(--font-sans)',
         heading: 'var(--font-heading)',
         mono:    'var(--font-mono)',
-        serif:   ['Georgia', 'serif'],
+        serif:   ['var(--font-serif)', 'Georgia', 'serif'],
       },
 
       // ── Font sizes ─────────────────────────────────────────────────────────
